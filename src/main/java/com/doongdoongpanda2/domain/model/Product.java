@@ -17,6 +17,11 @@ public class Product {
 		
 		System.out.println(product == product2); //false
 		System.out.println("name".equals("name"));// 정의 되어있으면 true
+		System.out.println("비교");// 정의 되어있으면 true
+		System.out.println(product.name);// 정의 되어있으면 true
+		System.out.println(product2.name);// 정의 되어있으면 true
+		System.out.println(product.name == product2.name);// 정의 되어있으면 true
+		System.out.println(new String("name") == new String("name")); // 단순 == 비교
 		System.out.println(product.hashCode() == product2.hashCode()); // 똑같이 생겼으면 같은 놈으로 보자!!! 하니깐 해시코드도 같아짐
 		System.out.println(product == product2); //하지만 다른건 다름 false그래서 equals로 비교하는 것
 	}
