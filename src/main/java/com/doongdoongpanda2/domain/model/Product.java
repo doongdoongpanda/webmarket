@@ -1,4 +1,4 @@
-package com.doongdoongpanda.domain.model;
+package com.doongdoongpanda2.domain.model;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public class Product {
 		System.out.println(product == product2); //false
 		System.out.println("name".equals("name"));// 정의 되어있으면 true
 		System.out.println(product.hashCode() == product2.hashCode()); // 똑같이 생겼으면 같은 놈으로 보자!!! 하니깐 해시코드도 같아짐
-		System.out.println(product == product2); //하지만 다른건 다름 false
+		System.out.println(product == product2); //하지만 다른건 다름 false그래서 equals로 비교하는 것
 	}
 	private String id;
 	private String name;
