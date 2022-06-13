@@ -38,5 +38,12 @@ public class ProductRepository {
     public List<Product> getAllProducts() {
         return products;
     }
+    public Product getProductById(String id) {
+    	//173p 참고
+    	//List -> Stream (데이터의 흐름)
+    	return products.stream().filter((product) -> product.getId().equals(id)) //조건봄
+    			.findFirst() //첫번째꺼 취하는데 
+    			.get(); //그걸 얻어
+    }
 
 }

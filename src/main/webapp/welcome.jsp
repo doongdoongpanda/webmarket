@@ -12,7 +12,7 @@
       </head>
 
       <body>
-
+	<jsp:include page="menu.jsp"></jsp:include>
 
         <div class="p-5 bg-primary text-white">
           <div class="container">
