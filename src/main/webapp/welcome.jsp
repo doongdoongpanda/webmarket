@@ -35,7 +35,6 @@
               현재 접속 시각: <%= format.format(now) %>
           </div>
         </div>
-
         <footer class="container">
           <p>&copy; WebMarket</p>
         </footer>
