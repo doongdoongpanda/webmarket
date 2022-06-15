@@ -1,11 +1,13 @@
+<%@page import="com.doongdoongpanda2.domain.repository.ProductRepository"%>
 <%@page import="com.doongdoongpanda2.domain.model.Product"%>
-<%@page import="com.doongdoongpanda.data.ProductRepository"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 신규상품등록처리페이지: 이곳은 자바처리만 하는 곳 -->
 <%
+
 //post로 넘어온 것 받기
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 // POST로 넘어온 것
 String productId = request.getParameter("productId");
 String name = request.getParameter("name");

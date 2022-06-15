@@ -1,4 +1,5 @@
-<%@page import="com.doongdoongpanda.data.ProductRepository"%>
+<%@page import="com.doongdoongpanda2.domain.repository.ProductRepository"%>
+
 <%@page import="com.doongdoongpanda2.domain.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -25,10 +26,9 @@
     
       <div class="container">
         <div class="row" align="center">
-                <% 
-                
+                <%
                 out.print(session.getAttribute("foods"));
-                
+                                
                 ProductRepository repository = ProductRepository.getInstance();
                 List<Product> products = repository.getAllProducts();
                 for (int i = 0; i < products.size(); i++) {
