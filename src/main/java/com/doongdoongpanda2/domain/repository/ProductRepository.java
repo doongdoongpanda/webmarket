@@ -2,13 +2,14 @@ package com.doongdoongpanda2.domain.repository;
 
 import java.util.List;
 
-import com.doongdoongpanda.data.ProductRepositoryImpl;
+import com.doongdoongpanda.data.ProductRepositoryDbImpl;
+import com.doongdoongpanda.data.dao.MySqlProductDaoImpl;
 import com.doongdoongpanda2.domain.model.Product;
 
 public interface ProductRepository {
 	
 	public static ProductRepository getInstance() {
-		return ProductRepositoryImpl.getInstance();
+		return new ProductRepositoryDbImpl(new MySqlProductDaoImpl());
 	}
 	public List<Product> getAllProducts();
 	

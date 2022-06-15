@@ -33,7 +33,7 @@
                 List<Product> products = repository.getAllProducts();
                 for (int i = 0; i < products.size(); i++) {
                     Product product = products.get(i);
-                %>
+            %>
             <div class="col-md-4">
               <h3><%= product.getName() %></h3>
               <p><%= product.getDescription() %></p>
