@@ -29,17 +29,7 @@
             <h3>Welcome to Web Market!</h3>
             <% Date now=new Date(); SimpleDateFormat format=new SimpleDateFormat("hh:mm:ss a"); %>
               현재 접속 시각: <%= format.format(now) %>
-             <% 
-             List<String> foods = new ArrayList<>();
-            	foods.add("초코");
-            	foods.add("초코");
-            	
-            	 session.setAttribute("foods", foods);
-                 
-                 
-                 session.setMaxInactiveInterval(5);
-                 %>
-             %>
+
           </div>
         </div>
 	<jsp:include page="footer.jsp"></jsp:include>

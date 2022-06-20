@@ -25,7 +25,7 @@
 
 
 	<div class="container mt-3">
-		<form action="processAddProduct.jsp" method="post"
+		<form action="processAddProduct.do" method="post"
 			class="form-horizontal">
 			<div class="form-group row m-3">
 				<label class="col-sm-2">상품 코드</label>

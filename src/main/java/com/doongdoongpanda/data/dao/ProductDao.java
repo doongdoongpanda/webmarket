@@ -4,6 +4,7 @@ package com.doongdoongpanda.data.dao;
 import java.util.List;
 
 import com.doongdoongpanda2.domain.model.Product;
+//interface 안에 작성한 멤버 = public final static 이 생략되어 있다.	
 
 // Data Access Object
 // DB랑 연결할 놈
