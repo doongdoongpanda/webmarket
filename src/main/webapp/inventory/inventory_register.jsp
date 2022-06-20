@@ -24,7 +24,7 @@ h2 {
 </style>
 </head>
 <br>
-<h2>㈜트와이스 재고 현황 - 상품상세</h2>
+<h2>㈜트와이스 재고 현황 - 상품등록</h2>
 <%
 java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
 String today = formatter.format(new java.util.Date());
@@ -44,27 +44,27 @@ id = rset.getInt(1)+1;
 
 	<tr>
 	<td width=120>상품번호 </td>
-	<td width=480 align=left><input type=number name='id' value=<%=id%> readonly></input></td>
+	<td width=480 align=left><input readonly type=number name='id' value=<%=id%>></input></td>
 	</tr>
 	<tr>
 	<td width=120>상품명 </td>
-	<td width=480 align=left><input type=text name ='name' required></input></td>
+	<td width=480 align=left><input required type=text name ='name'></input></td>
 	</tr>
 		<tr>
 	<td width=120>재고 현황 </td>
-	<td width=480 align=left><input type=number name='no' required></input></td>
+	<td width=480 align=left><input required type=number name='currentCount'></input></td>
 	</tr>
 	<tr>
 	<td width=120>상품등록일 </td>
-	<td width=480 align=left><input type='hidden' name='productDay' value="<%=today%>" required><%=today%></input></td>
+	<td width=480 align=left><input type='hidden' required name='checkDate' value="<%=today%>"><%=today%></input></td>
 	</tr>
 		<tr>
 	<td width=120>재고등록일 </td>
-	<td width=480 align=left><input type='hidden' name='stockDay' value="<%=today%>" required><%=today%></input></td>
+	<td width=480 align=left><input type='hidden' name='registDate' value="<%=today%>" required><%=today%></input></td>
 	</tr>
 	<tr>
 	<td width=120>상품설명 </td>
-	<td width=480 align=left><input type=text name='content' required></input></td>
+	<td width=480 align=left><input type=text name='detail' required></input></td>
 	</tr>
 		<tr>
 	<td width=120>상품사진 </td>

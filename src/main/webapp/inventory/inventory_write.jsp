@@ -4,9 +4,6 @@
 <%@ page import="java.text.SimpleDateFormat,java.util.Date"%>
 <html>
 <head>
-
-
-
 <style type = "text/css">
 
 table {
@@ -19,8 +16,8 @@ h2 {
 }   
 </style>
 </head>
-<body>
 
+<body>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = request.getParameter("id");
@@ -97,7 +94,7 @@ h2 {
 %>
 		
 <table>
- <tr><td><input type=button value="목록" Onclick="location.href='gongji_list.jsp'"></td>
+ <tr><td><input type=button value="목록" Onclick="location.href='inventory_list.jsp'"></td>
  </tr>
  </table>
 <%
