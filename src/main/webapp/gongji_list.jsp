@@ -29,7 +29,6 @@ h2 {
 
 Class.forName("com.mysql.cj.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:33061/kopoctc","root","kopo29");
-//sql쿼리 생성/실행을 위한 statement객체 생성
 	Statement stmt = conn.createStatement();
 	ResultSet rset = stmt.executeQuery("select * from gongji order by id desc;");
 	while(rset.next()){
