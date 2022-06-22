@@ -6,9 +6,10 @@
 <head>
 <SCRIPT LANGUAGE="JavaScript">
 function submitForm(mode){
-	fm.action ="inventory_write.jsp?key=INSERT";
+	fm.action ="gongji_write.jsp?key=INSERT";
 	fm.submit();
 }
+
 </SCRIPT>
 
 <style type = "text/css">

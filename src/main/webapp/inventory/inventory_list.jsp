@@ -42,9 +42,11 @@ text-decoration: none;
 try{
 int totaldata = 0;  
 int countpage = 5;  
-int datalist = 5;  
+int datalist = 10;  
 int totalpage = 0;  
 int linecount = 0;
+int bundle = countpage * datalist; //50
+int lastIndex = bundle - datalist; //40
 String starts = request.getParameter("togo"); 
 
 int start;                                            
@@ -112,7 +114,6 @@ while(rset.next()){
     String nextt = ">>";
 
 
-
      int startpage = (start/(countpage*datalist)) * countpage +1;  
 
      int endpage = startpage + countpage-1;
@@ -131,38 +132,62 @@ while(rset.next()){
 <tr><td width=700></td><td><input align=right type=submit onClick=location.href='inventory_register.jsp' value = 신규등록></input></td>
 </tr></table>
 
-<table cellspacing=1 width=600 style="font-size:20;">
+<table cellspacing=1 width=400>
 
 <tr rowspan=3>
 <td></td></tr>
 
 <%
 //페이지 번호 출력
-
+int beforee = 0;
 if(start>=0){
-   out.println("<td width=80><a href=inventory2_list.jsp?togo="+ (start -datalist) +">"+" "+ before +" "+"</a></td>");
-    }
+
+		 beforee  = start; //마지막이 50
+		// out.println (start + "!!!");
+		 
+		 int aa = (start/bundle)*bundle-datalist;
+				//out.println(aa+"???");
+				 beforee  =aa;
+		if(aa <= 0){
+			beforee= 0;
+		}
+
+   out.println("<td width=80><a href=inventory_list.jsp?togo="+ beforee +">"+" "+ before +" "+"</a></td>");
+
+}
  for(int i = startpage; i <= endpage; i++){
 	 if (i == start){          
-         out.println("<td width=200><a href = inventory2_list.jsp?togo="+ (i-1)*datalist +"><b>"+" "+i+" "+"</b></a></td>");
+         out.println("<td width=200><a href = inventory_list.jsp?togo="+ (i-1)*datalist +"><b>"+" "+i+" "+"</b></a></td>");
        }        
     else {
-  out.println("<td width=200><a href = inventory2_list.jsp?togo="+ (i-1)*datalist +"><b>"+" "+i+" "+"</b></a></td>");   
+  out.println("<td width=200><a href = inventory_list.jsp?togo="+ (i-1)*datalist +"><b>"+" "+i+" "+"</b></a></td>");   
  }    
 
     }
+ int next = 0;
+ //10 에서 다음누르면 100이되야함
+// if( beforee / bundle == 0){
+	 //next = bundle;
+ //120에서 눌르면 200이 되야함
+ 	//if(beforee / bundle > 0){
+	 	//next = (beforee / bundle)*bundle;
+	// }
 
     if (start <= totalpage*datalist) {    
-
-		int next = start+datalist;
-
+		//if(totalpage%(start+datalist))
+    	next = (start+datalist); //마지막이 50
+ int aa = ((start+bundle)/bundle)*bundle;
+		//out.println(start+"???");
+		next =aa;
+		//out.println(aa+"???");
 		if(next>=totaldata){
-
+			//마지막
+		
 			next=(totalpage-1)*datalist;
-
+			//out.println(next+"!!!");
 	} 
 
-		out.println("<td width=80><a href=inventory2_list.jsp?togo="+ (next) +">"+" "+ nextt +" "+"</a></td>");
+		out.println("<td width=80><a href=inventory_list.jsp?togo="+ (next) +">"+" "+ nextt +" "+"</a></td>");
 
     } 
 

@@ -20,7 +20,10 @@ function submitForm(mode){
   }
 h2 {
    text-align:center;
-}   
+}
+
+
+ 
 </style>
 </head>
 <br>
@@ -41,14 +44,14 @@ id = rset.getInt(1)+1;
 <br>
 
 <table border = 1 cellpadding=5>
-
+<form method=post action='inventory_write.jsp?key=INSERT&id=<%=id%>' enctype="multipart/form-data">
 	<tr>
 	<td width=120>상품번호 </td>
 	<td width=480 align=left><input readonly type=number name='id' value=<%=id%>></input></td>
 	</tr>
 	<tr>
 	<td width=120>상품명 </td>
-	<td width=480 align=left><input required type=text name ='name'></input></td>
+	<td width=480 align=left><input required type=text name ='item'></input></td>
 	</tr>
 		<tr>
 	<td width=120>재고 현황 </td>
@@ -69,7 +72,9 @@ id = rset.getInt(1)+1;
 		<tr>
 	<td width=120>상품사진 </td>
 	<td width=480 colspan=3 align=left>
-	<input type=file name="photo"></td>
+	<input type=file accept="image/*" name="photo" id="myFile" >
+	
+	<img id="View"></td>
 	</tr>
 </table>
 <br>
@@ -79,9 +84,8 @@ id = rset.getInt(1)+1;
 	stmt.close();
 	stmt2.close();
 	conn.close();
-
 %>
-</table>
+
 </html>
 
 <table>
@@ -89,9 +93,29 @@ id = rset.getInt(1)+1;
 	<td width = 500></td>
 	<td><input type=button onClick="location.href='inventory_list.jsp'" value = '취소'> </input></td>
 	<td>
-	<input type=button value="완료" Onclick="location.href='inventory_write.jsp?key=INSERT'"></input></td>
+	<input type=submit value = '완료'></input></td>
 	</tr>
 </table>
+<script src="http://madalla.kr/js/jquery-1.8.3.min.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+    $("#myFile").on('change', function(){
+    readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#View').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
 </form>
 <%
 	rset.close();

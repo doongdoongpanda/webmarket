@@ -1,3 +1,7 @@
+<%@page import="javax.swing.ImageIcon"%>
+<%@page import="javax.swing.JLabel"%>
+<%@page import="java.awt.Image"%>
+<%@page import="java.net.URL"%>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <%@ page contentType = "text/html; charset=utf-8"%>
 <%@ page import="java.sql.*,javax.sql.*, java.io.*"%>
@@ -6,6 +10,12 @@
 <head>
 
 <style type = "text/css">
+  .bigtable {
+   border-collapse : collapse;
+  	margin:auto;
+    text-align: center;
+    border: 1px solid black;
+  }
   table {
 	margin:auto;
     text-align: center;
@@ -22,7 +32,6 @@ h2 {
 Class.forName("com.mysql.cj.jdbc.Driver");
 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:33061/kopoctc","root","kopo29");
 Statement stmt = conn.createStatement();
-Statement stmt2 = conn.createStatement();
 
 	String ids = request.getParameter("id");
 	Integer id = 0;
@@ -36,40 +45,40 @@ Statement stmt2 = conn.createStatement();
 	Date checkDate = rset.getDate(4); //체크일자
 	Date registDate = rset.getDate(5); //등록일자
 	String content = rset.getString(6); //내용
-	String photo = rset.getString(6); //사진명
-
+	String photo = rset.getString(7); //사진명
 %>
 <br>
 
-<table border = 1 cellpadding=5>
+<table border = 1 cellpadding=5 class="bigtable">
 
 	<tr>
 	<td width=120>상품번호 </td>
 	<td width=480 colspan=3 align=left><%=bunho%></td>
 	</tr>
 	<tr>
-	<td width=120>상품명 </td>
-	<td width=480 colspan=3 align=left><%=item%></td>
+	<td>상품명 </td>
+	<td colspan=3 align=left><%=item%></td>
 	</tr>
 		<tr>
-	<td width=120>재고 현황 </td>
-	<td width=480 colspan=3 align=left><%=currentCount%></td>
+	<td >재고 현황 </td>
+	<td colspan=3 align=left><%=currentCount%></td>
 	</tr>
 	<tr>
-	<td width=120>상품등록일 </td>
-	<td width=480 colspan=3 align=left><%=checkDate%></td>
+	<td>상품등록일 </td>
+	<td colspan=3 align=left><%=checkDate%></td>
 	</tr>
 		<tr>
-	<td width=120>상품등록일 </td>
-	<td width=480 colspan=3 align=left><%=registDate%></td>
+	<td>상품등록일 </td>
+	<td colspan=3 align=left><%=registDate%></td>
 	</tr>
 	<tr>
-	<td width=120>상품설명 </td>
-	<td width=480 colspan=3 align=left><%=content%></td>
+	<td>상품설명 </td>
+	<td colspan=3 align=left><%=content%></td>
 	</tr>
 		<tr>
-	<td width=120>상품사진 </td>
-	<td width=480 colspan=3 align=left><%=photo%></td>
+	<td>상품사진 </td>
+	<td colspan=3 align=left>
+	<img class="photo" src="/inventory/<%=photo%>"></td>
 	</tr>
 </table>
 <br>
@@ -87,7 +96,7 @@ Statement stmt2 = conn.createStatement();
 <%
 	rset.close();
 	stmt.close();
-	stmt2.close();
+
 	conn.close();
 
 	
