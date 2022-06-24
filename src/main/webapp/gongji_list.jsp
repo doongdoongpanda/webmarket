@@ -21,8 +21,9 @@ h2 {
 <body>
 <table border = 1 width=770 cellpadding=5 colspan=5>
 	<tr>
-	<td width=120>번호 </td>
+	<td width=80>번호 </td>
 	<td width=300>제목 </td>
+	<td width=80>조회수 </td>
 	<td width=200>등록일 </td>
 	</tr>
 <%
@@ -38,6 +39,7 @@ Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:33061/kopo
 	<tr>
 	<td><%=id%></td>
 	<td><a href='gongji_view.jsp?key=<%=id%>'><%=rset.getString(2)%></a></td>
+	<td><%=rset.getInt(8) %></td>
 	<td><%=rset.getString(3)%></td>
 	</tr>
 <%

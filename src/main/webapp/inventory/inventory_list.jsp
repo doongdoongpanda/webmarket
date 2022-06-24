@@ -142,9 +142,7 @@ while(rset.next()){
 int beforee = 0;
 if(start>=0){
 
-		 beforee  = start; //마지막이 50
-		// out.println (start + "!!!");
-		 
+		 beforee  = start; 
 		 int aa = (start/bundle)*bundle-datalist;
 				//out.println(aa+"???");
 				 beforee  =aa;
@@ -165,28 +163,19 @@ if(start>=0){
 
     }
  int next = 0;
- //10 에서 다음누르면 100이되야함
-// if( beforee / bundle == 0){
-	 //next = bundle;
- //120에서 눌르면 200이 되야함
- 	//if(beforee / bundle > 0){
-	 	//next = (beforee / bundle)*bundle;
-	// }
+
 
     if (start <= totalpage*datalist) {    
-		//if(totalpage%(start+datalist))
+		
     	next = (start+datalist); //마지막이 50
  int aa = ((start+bundle)/bundle)*bundle;
-		//out.println(start+"???");
-		next =aa;
-		//out.println(aa+"???");
-		if(next>=totaldata){
-			//마지막
 		
+		next =aa;
+	
+		if(next>=totaldata){
 			next=(totalpage-1)*datalist;
 			//out.println(next+"!!!");
 	} 
-
 		out.println("<td width=80><a href=inventory_list.jsp?togo="+ (next) +">"+" "+ nextt +" "+"</a></td>");
 
     } 

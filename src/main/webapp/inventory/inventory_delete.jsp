@@ -21,13 +21,15 @@ try {
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:33061/kopoctc","root","kopo29");
 	String item= "";
+	String photo = "";
 	Statement stmt = conn.createStatement();
 	String id = request.getParameter("key");	
     ResultSet rset = stmt.executeQuery("select * from inventory2 where id =" + id); // 가장 높은 학번 찾기
     while (rset.next()) {
       item = rset.getString(2); 
+      photo = rset.getString(7);
     }
-	
+    System.out.println(photo);
 	request.setCharacterEncoding("UTF-8");
 
 
@@ -36,6 +38,27 @@ try {
 	stmt.execute(delete);
 	Statement stmt2 = conn.createStatement();
 
+	
+	String directory = request.getSession().getServletContext().getRealPath("/inventory");
+	
+	
+	
+	
+	File file = new File(directory + "\\" + photo);
+    
+	if( file.exists() ){
+		if(file.delete()){
+			System.out.println("파일삭제 성공");
+		}else{
+			System.out.println("파일삭제 실패");
+		}
+	}else{
+		System.out.println("파일이 존재하지 않습니다.");
+	}
+    	
+
+	
+	
 %>
 <h2>[<%=item%>] 상품이 삭제되었습니다.</h2>
 <br>

@@ -34,6 +34,7 @@ h2 {
 
 	String detail = "";
 
+	String photos = "";
 	String photo = "";
 	//파일 경로
 
@@ -45,9 +46,22 @@ h2 {
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:33061/kopoctc","root","kopo29");
 
+	
+	String savePath = null;  // 첨부파일 위치
+
+	//int sizeLimit = 50*1024*1024 ; // 파일 사이즈 (최대 50M 가능)
+	savePath = File.separator + "aaa" + File.separator + "bbb"; // 파일 경로 알아서...
+	System.out.println(savePath);
+	
+	
+	
+	
 		//String directory = "C:\\Users\\kopo\\Desktop\\eclipse_workspace\\webMarket\\webmarket\\src\\main\\webapp\\inventory\\upload";
 		String directory = request.getSession().getServletContext().getRealPath("/inventory");
+		
 		System.out.println(directory);
+		
+		//savePath = directory; // 파일 경로 알아서...
 		int sizeLimit = 100*1024*1024;		//100MB 제한
 		
 		MultipartRequest multi = new MultipartRequest(request, 
@@ -56,45 +70,57 @@ h2 {
 	                                               "UTF-8",
 	                              	                new DefaultFileRenamePolicy() );
 		
-		try {
+
+		
+		int photoLength = 0;
+		int i = 0;
+		try{
 	         Enumeration files = multi.getFileNames();
 	 		while(files.hasMoreElements()){
-				String name = (String)files.nextElement();
+	 			
+	 			//mysql상에 저장하기
+	 			String name = (String)files.nextElement();
 				File file = multi.getFile(name);
-				photo =multi.getOriginalFileName(name);
-	 		
+				photo =multi.getOriginalFileName(name);//파일명가져오기
+				
 
-	            int i = photo.lastIndexOf("."); // 파일 확장자 index 위치 찾기
-	            String fileExtension = photo.substring(i); // 확장자명 자르기
+				photoLength = photo.length();
+
+	           i = photo.lastIndexOf("."); // 파일 확장자 index 위치 찾기
+	            //String fileExtension = f_original.substring(i); // 확장자명 자르기
 	   
-	            File file = multi.getFile(photo); // file 객체 생성
-	            
-	            String filePath  = directory + "\\" + fileName; //시스템상의 절대경로를 포함한 파일명
-	            File f1 = new File(filePath);
+	         photos =  id + photo.substring(i, photoLength);//파일 확장자 따와서 아이디를 붙여서 새로이름지정
+ 
+	         String filePath  = directory + "\\" + photo; //시스템상의 절대경로를 포함한 파일명
 	         
+	            File f1 = new File(filePath);
+
 	            if (f1.exists()) {
-	               File newFile = new File(directory + "\\" + multi.getParameter("id") + fileExtension); // 새로운 파일 객체 생성
-	               boolean rsltt = f1.renameTo(newFile);  //원하는 파일명으로 변경.
-	               System.out.println("f1 출력 : " + f1);
-	            }
-	         }
+	                File newFile = new File(directory + "\\" + photos); // 새로운 파일 객체 생성
+	                boolean rsltt = f1.renameTo(newFile);  //원하는 파일명으로 변경.
+	                System.out.println("f1 출력 : " + newFile);
+	             }
+	          }
+	       } catch (Exception e) {
+	             System.out.println("파일 없음" + e.getLocalizedMessage());
+	       }
+	         
+	         
+
+	 		//System.out.println(photoLength);
+	 		//System.out.println(i);
+
+	 		//System.out.println(photos);
 	 		
-	      }
-	 		} catch (Exception e) {
-	            System.out.println("파일 없음" + e.getLocalizedMessage());
-	      }
-		
-		
-		
-		
-		
 		
 		//while(files.hasMoreElements()){
 			//String name = (String)files.nextElement();
 			//File file = multi.getFile(name);
 			//photo =multi.getOriginalFileName(name);
 		//}
-			//텍스트 데이터 베이스에 저장
+			
+		
+		//텍스트 데이터 베이스에 저장
 			Enumeration params=multi.getParameterNames();
 		while (params.hasMoreElements()){
 			String name=(String)params.nextElement();
@@ -134,7 +160,7 @@ h2 {
 		pstmt.setString(4, chk); 
 		pstmt.setString(5, rgD); 
 		pstmt.setString(6, detail); 
-		pstmt.setString(7, photo);
+		pstmt.setString(7, photos);
 		
 		pstmt.executeUpdate();
 		pstmt.close();
