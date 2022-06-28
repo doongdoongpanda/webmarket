@@ -133,7 +133,6 @@ while(rset.next()){
 </tr></table>
 
 <table cellspacing=1 width=400>
-
 <tr rowspan=3>
 <td></td></tr>
 

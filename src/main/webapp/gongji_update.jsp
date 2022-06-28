@@ -55,7 +55,7 @@ String content = rset.getString(4);
 	</tr>
 	<tr>
 	<td width=150>제목 </td>
-	<td width=400 colspan=3 align=left><input type=text name="title" value=<%=title%>></input></td>
+	<td width=400 colspan=3 align=left><input type=text value="<%=title %>" name="title"></input></td>
 	</tr>
 	<tr>
 	<td width=150>일자 </td>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.text.SimpleDateFormat,java.util.Date"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,10 @@ function submitForm(mode){
 	fm.action ="gongji_write.jsp?key=INSERT";
 	fm.submit();
 }
+<%
+java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
+String today = formatter.format(new java.util.Date());
+%>
 </SCRIPT>
 <meta charset="UTF-8">
 </head>
@@ -24,7 +29,7 @@ function submitForm(mode){
 </tr>
 <tr>
 <td><b>일자</b></td>
-<td>2022-06-14</td>
+<td><input type='hidden' name='registDate' value="<%=today%>" required><%=today%></td>
 </tr>
 <tr>
 <td><b>내용</b></td>
